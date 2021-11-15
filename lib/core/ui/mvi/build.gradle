@@ -1,0 +1,15 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+  api project(':lib:core:ui')
+
+  api Deps.conductor
+  api Deps.unicornRxJava2
+  api Deps.unicornCoroutines
+
+  kapt Deps.toothpickProcessor
+}
+

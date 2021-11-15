@@ -1,0 +1,31 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+
+dependencies {
+  api project(':lib:core')
+  api Deps.unicornRxJava2
+  api Deps.timber
+
+  implementation Deps.supportAnnotations
+
+  api Deps.supportCoreLibs
+  api Deps.supportUiLibs
+
+  api Deps.coilCompose
+  api Deps.composeUi
+  api Deps.composeMaterial
+  api Deps.composeMaterialIcons
+  api Deps.composeTooling
+  api Deps.composeRuntime
+  api Deps.composeRuntimeRxJava
+  api Deps.accompanistInsets
+  api Deps.accompanistSystemUiController
+  api Deps.accompanistPager
+  api Deps.accompanistPagerIndicators
+  api Deps.accompanistSwipeRefresh
+  api Deps.accompanistFlowLayout
+
+  // all ui-components are expected to use DI...
+  api Deps.toothpickRuntime
+}
