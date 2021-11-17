@@ -17,7 +17,6 @@ object Deps {
   const val composeMaterialIcons = "androidx.compose.material:material-icons-core:$composeVersion"
   const val composeTooling = "androidx.compose.ui:ui-tooling:$composeVersion"
   const val composeRuntime = "androidx.compose.runtime:runtime:$composeVersion"
-  const val composeRuntimeRxJava = "androidx.compose.runtime:runtime-rxjava2:$composeVersion"
 
   private const val accompanistVersion = "0.18.0"
   const val accompanistInsets = "com.google.accompanist:accompanist-insets:$accompanistVersion"
@@ -50,10 +49,8 @@ object Deps {
     kotlinCoroutinesCore,
     kotlinCoroutinesAndroid,
     kotlinCoroutinesRx2,
-    "io.reactivex.rxjava2:rxjava:2.2.20",
-    "io.reactivex.rxjava2:rxandroid:2.1.1",
+    "com.michael-bull.kotlin-result:kotlin-result:1.1.9",
     "com.jakewharton.rxrelay2:rxrelay:2.1.1",
-    "com.michael-bull.kotlin-result:kotlin-result:1.1.9"
   )
 
   private const val supportLibVersion = "1.1.0"
@@ -86,7 +83,6 @@ object Deps {
   private const val retrofitVersion = "2.9.0"
   val retrofitLibs = arrayOf(
     "com.squareup.retrofit2:retrofit:$retrofitVersion",
-    "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
     "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
   )
 
@@ -99,12 +95,10 @@ object Deps {
   const val coil = "io.coil-kt:coil-base:$coilVersion"
   const val coilCompose = "io.coil-kt:coil-compose:$coilVersion"
 
-  const val unicornRxJava2 = "ru.dimsuz:unicorn-rxjava2:0.9.1"
   const val unicornCoroutines = "ru.dimsuz:unicorn-coroutines:0.9.1"
 
   const val sqlDelightPlugin = "com.squareup.sqldelight:gradle-plugin:1.5.2"
   const val sqlDelightAndroidDriver = "com.squareup.sqldelight:android-driver:1.5.2"
-  const val sqlDelightRxJava = "com.squareup.sqldelight:rxjava2-extensions:1.5.2"
   const val sqlDelightRxCoroutines = "com.squareup.sqldelight:coroutines-extensions:1.5.2"
 
   const val firebaseCore = "com.google.firebase:firebase-core:18.0.2"

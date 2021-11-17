@@ -13,6 +13,8 @@ class KodeApplication : Application() {
 
   private fun configureAppScope() {
     val appScope = Toothpick.openScope(APP_SCOPE_NAME)
-    appScope.installModules()
+    appScope.installModules(
+      KodeApplicationModule(this),
+    )
   }
 }

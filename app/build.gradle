@@ -17,6 +17,14 @@ android {
         buildConfigField 'boolean', 'RELEASE', 'Boolean.parseBoolean("false")'
     }
 
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion "1.0.4"
+    }
+
     buildTypes {
         debug {
             versionNameSuffix '-dev'
@@ -46,6 +54,8 @@ android {
 
 dependencies {
     implementation project(":core")
+    implementation project(":routing")
+    implementation project(":auth:ui")
 
     implementation Deps.coil
     implementation Deps.firebaseCore

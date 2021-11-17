@@ -35,31 +35,6 @@ android {
 }
 
 dependencies {
-  api Deps.conductor
-  api Deps.unicornCoroutines
-
-  kapt Deps.toothpickProcessor
-  api Deps.coreLibs
-  api Deps.toothpickRuntime
-  api Deps.timber
-
-  api Deps.supportCoreLibs
-  api Deps.supportUiLibs
-
-  api Deps.coilCompose
-  api Deps.composeUi
-  api Deps.composeMaterial
-  api Deps.composeMaterialIcons
-  api Deps.composeTooling
-  api Deps.composeRuntime
-  api Deps.accompanistInsets
-  api Deps.accompanistSystemUiController
-  api Deps.accompanistPager
-  api Deps.accompanistPagerIndicators
-  api Deps.accompanistSwipeRefresh
-  api Deps.accompanistFlowLayout
-
-  api Deps.toothpickRuntime
-
-  implementation Deps.supportAnnotations
+  implementation project(":core")
+  implementation project(':routing')
 }
