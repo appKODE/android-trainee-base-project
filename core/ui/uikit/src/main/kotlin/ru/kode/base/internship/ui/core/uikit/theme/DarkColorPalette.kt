@@ -1,0 +1,26 @@
+package ru.kode.base.internship.ui.core.uikit.theme
+
+internal val DarkColorPalette = AppColors(
+  backgroundPrimary = Dark1,
+  backgroundSecondary = Dark2,
+  contentPrimary = Dark3,
+  contentSecondary = Dark4,
+  contentTertiary = Dark5,
+  contentAccentPrimary = Blue1,
+  contentAccentSecondary = Pink1,
+  contentAccentTertiary = Light1,
+  textPrimary = Light1,
+  textSecondary = Dark6,
+  textTertiary = Dark5,
+  indicatorContentError = Red1,
+  indicatorContentDone = Green1,
+  indicatorContentSuccess = Blue1,
+  primaryButton = Blue1,
+  bottomMenuBackground = Dark2.copy(alpha = 0.5f),
+  scrimer = Dark7.copy(alpha = 0.25f),
+  calendarPeriod = Blue1.copy(alpha = 0.2f),
+  buttonSecondary = Light1,
+  black = Dark7,
+  textButton = Light1,
+  isDark = true,
+)

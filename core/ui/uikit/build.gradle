@@ -36,8 +36,4 @@ android {
 
 dependencies {
   implementation project(":core")
-  implementation project(":core:ui:uikit")
-  implementation project(':routing')
-
-  kapt Deps.toothpickProcessor
 }
