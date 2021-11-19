@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.squareup.sqldelight'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -16,16 +16,16 @@ android {
     buildConfigField 'boolean', 'RELEASE', 'Boolean.parseBoolean("false")'
   }
 
+  packagingOptions {
+    resources.excludes += "DebugProbesKt.bin"
+  }
+
   buildFeatures {
     compose = true
   }
 
   composeOptions {
     kotlinCompilerExtensionVersion Deps.composeVersion
-  }
-
-  packagingOptions {
-    resources.excludes += "DebugProbesKt.bin"
   }
 
   buildTypes {
@@ -39,9 +39,17 @@ android {
 }
 
 dependencies {
-  implementation project(":core")
-  implementation project(":core:ui:uikit")
-  implementation project(':routing')
+  api project(':core')
 
+  api Deps.okHttp
+  api Deps.moshi
+  api Deps.okio
+  api Deps.retrofitLibs
+  api Deps.sqlDelightRxCoroutines
+
+  implementation Deps.sqlDelightAndroidDriver
+  implementation Deps.okHttpLoggingInterceptor
+
+  kapt Deps.moshiProcessor
   kapt Deps.toothpickProcessor
 }

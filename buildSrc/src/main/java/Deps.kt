@@ -4,6 +4,7 @@ object Deps {
 
   const val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
   const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+  const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
   const val kotlinCompiler = "org.jetbrains.kotlin:kotlin-compiler-embeddable:$kotlinVersion"
 
   private const val coroutinesVersion = "1.5.1"
@@ -29,23 +30,11 @@ object Deps {
   private const val agpVersion = "7.0.3"
   const val androidGradlePlugin = "com.android.tools.build:gradle:$agpVersion"
 
-  private val lintVersion = agpVersion.split('.').let { (major, minor, patch) -> "${major.toInt() + 23}.$minor.$patch" }
-  val lintApi = "com.android.tools.lint:lint-api:$lintVersion"
-  val lintChecks = "com.android.tools.lint:lint-checks:$lintVersion"
-  val lint = "com.android.tools.lint:lint:$lintVersion"
-  val lintTests = "com.android.tools.lint:lint-tests:$lintVersion"
-
-  private const val detektVersion = "1.18.1"
-  const val detektPlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion"
-  const val detektApi = "io.gitlab.arturbosch.detekt:detekt-api:$detektVersion"
-  const val detektTest = "io.gitlab.arturbosch.detekt:detekt-test:$detektVersion"
-
-  const val ktlint = "com.pinterest:ktlint:0.42.1"
-
   const val timber = "com.jakewharton.timber:timber:5.0.1"
 
   val coreLibs = arrayOf(
     kotlinStdLib,
+    kotlinReflect,
     kotlinCoroutinesCore,
     kotlinCoroutinesAndroid,
     kotlinCoroutinesRx2,
@@ -103,10 +92,4 @@ object Deps {
 
   const val firebaseCore = "com.google.firebase:firebase-core:18.0.2"
   const val firebaseMessaging = "com.google.firebase:firebase-messaging:21.0.1"
-
-  val jetpackSecurity = arrayOf(
-    "androidx.security:security-crypto:1.1.0-alpha01",
-    "com.google.crypto.tink:tink-android:1.5.0"
-  )
-  const val androidxBiometric = "androidx.biometric:biometric-ktx:1.2.0-alpha03"
 }
