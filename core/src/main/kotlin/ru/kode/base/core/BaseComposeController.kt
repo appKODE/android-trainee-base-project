@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -37,9 +38,10 @@ abstract class BaseComposeController<VS : Any, VI : BaseViewIntents> : Controlle
 
   protected abstract fun createConfig(): Config<VI>
 
+  @Stable
   override val intents = config.intentsConstructor()
 
-  protected val screenScope: Scope get() {
+  protected val screenScope: Scope @Stable get() {
     val name = args.getString(SCREEN_SCOPE_ARG_NAME)
       ?: error("internal error, no screen scope for ${this.javaClass.simpleName}")
     if (!Toothpick.isScopeOpen(name)) {

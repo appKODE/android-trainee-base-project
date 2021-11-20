@@ -1,5 +1,6 @@
 package ru.kode.base.core
 
+import androidx.compose.runtime.Stable
 import com.jakewharton.rxrelay2.Relay
 import io.reactivex.functions.Consumer
 import java.util.UUID
@@ -19,6 +20,7 @@ interface UiIntentFactory {
   override fun hashCode(): Int
 }
 
+@Stable
 class UiIntentFactory0 internal constructor(
   override val name: String,
   sendRelay: Relay<UiIntent>,
@@ -38,7 +40,11 @@ class UiIntentFactory0 internal constructor(
   }
 
   override fun equals(other: Any?): Boolean {
-    return wrapped == other
+    return when {
+      this === other -> true
+      other is UiIntentFactory0 -> this.wrapped == other.wrapped
+      else -> this.wrapped == other
+    }
   }
 
   override fun hashCode(): Int {
@@ -56,6 +62,7 @@ class UiIntentFactory0 internal constructor(
   }
 }
 
+@Stable
 class UiIntentFactory1<T : Any> internal constructor(
   override val name: String,
   private val sendRelay: Relay<UiIntent>
