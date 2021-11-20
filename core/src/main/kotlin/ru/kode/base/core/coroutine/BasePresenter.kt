@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
@@ -43,12 +44,10 @@ abstract class BasePresenter<VS : Any, VI : BaseViewIntents, A : Any>(
     val machine = machine<VS, A>(actionsContext) { buildMachine() }
     this.machine = machine
 
-    launch {
-      machine.states
-        .onEach { viewStateFlow.emit(it) }
-        .catch { throw IllegalStateException("exception while reducing view state", it) }
-        .collect()
-    }
+    machine.states
+      .onEach { viewStateFlow.emit(it) }
+      .catch { throw IllegalStateException("exception while reducing view state", it) }
+      .launchIn(this)
   }
 
   override fun attachView(view: MviView<VS, VI>) {
