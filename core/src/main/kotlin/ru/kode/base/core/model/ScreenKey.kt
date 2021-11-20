@@ -46,7 +46,7 @@ abstract class ScreenKey : Parcelable {
   protected abstract val componentConfig: ComponentConfig
 
   // See NOTE_UNIQUE_DEFAULT_SCOPE_NAME
-  private val screenScopeName = this.javaClass.simpleName + System.currentTimeMillis().toString()
+  private fun createScreenScopeName() = this.javaClass.simpleName + System.currentTimeMillis().toString()
 
   /**
    * Creates a new [Controller] by passing `this` Parcelable to it as an arguments to use.
@@ -62,6 +62,7 @@ abstract class ScreenKey : Parcelable {
     }
     return componentConfig.controllerClass.newInstance().apply {
       val resolvedParentScopeName = (parentScopeName as String?) ?: foregroundScopeName(context)
+      val screenScopeName = createScreenScopeName()
       args.putParcelable(SCREEN_KEY_ARG_NAME, this@ScreenKey)
       args.putString(SCREEN_SCOPE_ARG_NAME, screenScopeName)
 
