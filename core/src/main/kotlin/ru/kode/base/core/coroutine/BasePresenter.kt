@@ -3,7 +3,6 @@ package ru.kode.base.core.coroutine
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -55,7 +54,7 @@ abstract class BasePresenter<VS : Any, VI : BaseViewIntents, A : Any>(
       "Expected View.intents to always return the same instance, internal error"
     }
 
-    viewScope = MainScope() + CoroutineName("View@${System.identityHashCode(view).toString(16)}")
+    viewScope = MainScopeImmediate() + CoroutineName("View@${System.identityHashCode(view).toString(16)}")
 
     if (isFirstViewAttach) {
       isFirstViewAttach = false
