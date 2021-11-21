@@ -86,18 +86,18 @@ class AppColors(
     contentAccentSecondary = other.contentAccentSecondary
     contentAccentTertiary = other.contentAccentTertiary
     textPrimary = other.textPrimary
-    textSecondary = other.backgroundPrimary
-    textTertiary = other.backgroundPrimary
-    indicatorContentError = other.backgroundPrimary
-    indicatorContentDone = other.backgroundPrimary
-    indicatorContentSuccess = other.backgroundPrimary
-    primaryButton = other.backgroundPrimary
-    bottomMenuBackground = other.backgroundPrimary
-    scrimer = other.backgroundPrimary
-    calendarPeriod = other.backgroundPrimary
-    buttonSecondary = other.backgroundPrimary
-    textButton = other.backgroundPrimary
-    black = other.backgroundPrimary
+    textSecondary = other.textSecondary
+    textTertiary = other.textTertiary
+    indicatorContentError = other.indicatorContentError
+    indicatorContentDone = other.indicatorContentDone
+    indicatorContentSuccess = other.indicatorContentSuccess
+    primaryButton = other.primaryButton
+    bottomMenuBackground = other.bottomMenuBackground
+    scrimer = other.scrimer
+    calendarPeriod = other.calendarPeriod
+    buttonSecondary = other.buttonSecondary
+    textButton = other.textButton
+    black = other.black
     isDark = other.isDark
   }
 }
