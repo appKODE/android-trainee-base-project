@@ -67,4 +67,5 @@ dependencies {
     implementation Deps.firebaseMessaging
 
     kapt Deps.toothpickProcessor
+    kapt Deps.moshiProcessor
 }

@@ -14,10 +14,16 @@ internal class AppFlowCoordinator @Inject constructor(
 
   override fun openInitialRoute(beforePushClearUntil: Route?) {
     return router.push(
-      AppRoute.Dummy(title = "Main Screen"),
+      AppRoute.Login.UserIdentificationKey,
       createContext(RouterTransitionType.None)
     )
   }
 
-  override fun handleEvent(event: AppFlow.Event) = Unit
+  override fun handleEvent(event: AppFlow.Event) {
+    when(event) {
+      AppFlow.Event.LoginRequested -> router.push(AppRoute.Login.EnterPassword, createContext())
+      AppFlow.Event.EnterPasswordDismissed -> router.pop()
+      AppFlow.Event.UserLoggedIn -> Unit
+    }
+  }
 }

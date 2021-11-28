@@ -2,6 +2,7 @@ package ru.kode.base.internship
 
 import android.app.Application
 import ru.kode.base.domain.core.di.APP_SCOPE_NAME
+import timber.log.Timber
 import toothpick.Toothpick
 
 class KodeApplication : Application() {
@@ -9,6 +10,7 @@ class KodeApplication : Application() {
     super.onCreate()
 
     configureAppScope()
+    configureLogging()
   }
 
   private fun configureAppScope() {
@@ -16,5 +18,9 @@ class KodeApplication : Application() {
     appScope.installModules(
       KodeApplicationModule(this),
     )
+  }
+
+  private fun configureLogging() {
+    if (!BuildConfig.RELEASE) Timber.plant(Timber.DebugTree())
   }
 }

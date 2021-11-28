@@ -46,6 +46,7 @@ dependencies {
   api Deps.okio
   api Deps.retrofitLibs
   api Deps.sqlDelightRxCoroutines
+  api Deps.supportPreferences
 
   implementation Deps.sqlDelightAndroidDriver
   implementation Deps.okHttpLoggingInterceptor

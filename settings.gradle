@@ -1,6 +1,9 @@
 include ':app',
   ':core',
-  ':auth:ui',
-  ':routing',
   ':core:ui:uikit',
-  ':core:data'
+  ':core:data',
+  ':core:domain',
+  ':routing',
+  ':auth:ui',
+  ':auth:data',
+  ':auth:domain'

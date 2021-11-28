@@ -32,6 +32,8 @@ android {
 
 dependencies {
   implementation project(":core")
-  //implementation project(":core:data")
+  implementation project(":auth:data")
+  implementation project(":auth:domain")
+
   kapt Deps.toothpickProcessor
 }

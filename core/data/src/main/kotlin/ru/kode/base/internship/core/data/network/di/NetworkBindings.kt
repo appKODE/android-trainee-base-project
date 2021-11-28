@@ -10,6 +10,8 @@ import ru.kode.base.internship.core.BuildConfig
 import ru.kode.base.internship.core.data.network.adapter.LocalDateJsonAdapter
 import ru.kode.base.internship.core.data.network.adapter.LocalDateTimeJsonAdapter
 import ru.kode.base.internship.core.data.network.adapter.LocalTimeJsonAdapter
+import ru.kode.base.internship.core.data.network.interceptor.AttachAccessTokenInterceptor
+import ru.kode.base.internship.core.data.storage.persistence.TokensPersistence
 import timber.log.Timber
 import toothpick.config.Module
 import java.time.format.DateTimeFormatter
@@ -40,7 +42,9 @@ private fun createMoshi(): Moshi {
     .build()
 }
 
-internal class AuthorizedOkHttpClientProvider @Inject constructor() : Provider<OkHttpClient> {
+internal class AuthorizedOkHttpClientProvider @Inject constructor(
+  private val tokensPersistence: TokensPersistence
+) : Provider<OkHttpClient> {
   override fun get(): OkHttpClient {
     val loggingInterceptor = HttpLoggingInterceptor { message -> Timber.tag("OkHttp"); Timber.d(message) }
     loggingInterceptor.level = HTTP_LOG_LEVEL
@@ -48,6 +52,7 @@ internal class AuthorizedOkHttpClientProvider @Inject constructor() : Provider<O
       .connectTimeout(HTTP_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
       .readTimeout(HTTP_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
       .writeTimeout(HTTP_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
+      .addNetworkInterceptor(AttachAccessTokenInterceptor(tokensPersistence))
       .addNetworkInterceptor(loggingInterceptor)
       .build()
   }
@@ -72,7 +77,7 @@ internal class AuthorizedRetrofitProvider @Inject constructor(
   }
 }
 
-internal const val BASE_URL = "" // TODO add api url
+internal const val BASE_URL = "https://stoplight.io/mocks/kode-education/kode-bank/27774162"
 internal const val HTTP_CONNECT_TIMEOUT = 60_000L
 internal val HTTP_LOG_LEVEL =
   if (BuildConfig.RELEASE) HttpLoggingInterceptor.Level.BASIC else HttpLoggingInterceptor.Level.BODY
