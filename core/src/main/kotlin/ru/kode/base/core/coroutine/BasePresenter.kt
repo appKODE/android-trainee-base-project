@@ -86,6 +86,8 @@ abstract class BasePresenter<VS : Any, VI : BaseViewIntents, A : Any>(
     }
   }
 
+  protected fun executeAsync(block: suspend CoroutineScope.() -> Unit) = launch(Dispatchers.IO, block = block)
+
   override fun detachView() {
     viewScope?.cancel()
     viewScope = null

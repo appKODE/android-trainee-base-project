@@ -10,18 +10,18 @@ import androidx.compose.ui.graphics.Color
 class AppColors(
   backgroundPrimary: Color,
   backgroundSecondary: Color,
-  contentPrimary: Color,
-  contentSecondary: Color,
-  contentTertiary: Color,
-  contentAccentPrimary: Color,
-  contentAccentSecondary: Color,
-  contentAccentTertiary: Color,
+  contendPrimary: Color,
+  contendSecondary: Color,
+  contendTertiary: Color,
+  contendAccentPrimary: Color,
+  contendAccentSecondary: Color,
+  contendAccentTertiary: Color,
   textPrimary: Color,
   textSecondary: Color,
   textTertiary: Color,
-  indicatorContentError: Color,
-  indicatorContentDone: Color,
-  indicatorContentSuccess: Color,
+  indicatorContendError: Color,
+  indicatorContendDone: Color,
+  indicatorContendSuccess: Color,
   primaryButton: Color,
   bottomMenuBackground: Color,
   scrimer: Color,
@@ -35,17 +35,17 @@ class AppColors(
     private set
   var backgroundSecondary by mutableStateOf(backgroundSecondary)
     private set
-  var contentPrimary by mutableStateOf(contentPrimary)
+  var contendPrimary by mutableStateOf(contendPrimary)
     private set
-  var contentSecondary by mutableStateOf(contentSecondary)
+  var contendSecondary by mutableStateOf(contendSecondary)
     private set
-  var contentTertiary by mutableStateOf(contentTertiary)
+  var contendTertiary by mutableStateOf(contendTertiary)
     private set
-  var contentAccentPrimary by mutableStateOf(contentAccentPrimary)
+  var contendAccentPrimary by mutableStateOf(contendAccentPrimary)
     private set
-  var contentAccentSecondary by mutableStateOf(contentAccentSecondary)
+  var contendAccentSecondary by mutableStateOf(contendAccentSecondary)
     private set
-  var contentAccentTertiary by mutableStateOf(contentAccentTertiary)
+  var contendAccentTertiary by mutableStateOf(contendAccentTertiary)
     private set
   var textPrimary by mutableStateOf(textPrimary)
     private set
@@ -53,11 +53,11 @@ class AppColors(
     private set
   var textTertiary by mutableStateOf(textTertiary)
     private set
-  var indicatorContentError by mutableStateOf(indicatorContentError)
+  var indicatorContendError by mutableStateOf(indicatorContendError)
     private set
-  var indicatorContentDone by mutableStateOf(indicatorContentDone)
+  var indicatorContendDone by mutableStateOf(indicatorContendDone)
     private set
-  var indicatorContentSuccess by mutableStateOf(indicatorContentSuccess)
+  var indicatorContendSuccess by mutableStateOf(indicatorContendSuccess)
     private set
   var primaryButton by mutableStateOf(primaryButton)
     private set
@@ -79,18 +79,18 @@ class AppColors(
   fun update(other: AppColors) {
     backgroundPrimary = other.backgroundPrimary
     backgroundSecondary = other.backgroundSecondary
-    contentPrimary = other.contentPrimary
-    contentSecondary = other.contentSecondary
-    contentTertiary = other.contentTertiary
-    contentAccentPrimary = other.contentAccentPrimary
-    contentAccentSecondary = other.contentAccentSecondary
-    contentAccentTertiary = other.contentAccentTertiary
+    contendPrimary = other.contendPrimary
+    contendSecondary = other.contendSecondary
+    contendTertiary = other.contendTertiary
+    contendAccentPrimary = other.contendAccentPrimary
+    contendAccentSecondary = other.contendAccentSecondary
+    contendAccentTertiary = other.contendAccentTertiary
     textPrimary = other.textPrimary
     textSecondary = other.textSecondary
     textTertiary = other.textTertiary
-    indicatorContentError = other.indicatorContentError
-    indicatorContentDone = other.indicatorContentDone
-    indicatorContentSuccess = other.indicatorContentSuccess
+    indicatorContendError = other.indicatorContendError
+    indicatorContendDone = other.indicatorContendDone
+    indicatorContendSuccess = other.indicatorContendSuccess
     primaryButton = other.primaryButton
     bottomMenuBackground = other.bottomMenuBackground
     scrimer = other.scrimer

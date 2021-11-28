@@ -1,9 +1,12 @@
 package ru.kode.base.internship.ui.core.uikit.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.text.selection.LocalTextSelectionColors
+import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material.Colors
 import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
@@ -39,9 +42,18 @@ fun AppTheme(
       LocalAppColors provides colorPalette,
       LocalAppTypography provides typography,
       LocalContentColor provides colors.textPrimary,
+      LocalTextSelectionColors provides textSelectionColors(colors),
+      LocalRippleTheme provides AppRippleTheme(colors),
       content = content,
     )
   }
+}
+
+private fun textSelectionColors(colors: AppColors): TextSelectionColors {
+  return TextSelectionColors(
+    handleColor = colors.contendAccentPrimary,
+    backgroundColor = colors.contendAccentPrimary.copy(alpha = 0.4f)
+  )
 }
 
 object AppTheme {
