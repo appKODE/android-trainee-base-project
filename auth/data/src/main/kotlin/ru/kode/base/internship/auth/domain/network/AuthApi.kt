@@ -22,7 +22,7 @@ internal interface AuthApi {
     @Body params: ConfirmOtpParams,
   ): ConfirmOtpResponse
 
-  @POST("payment/nontradeOrder")
+  @POST("api/auth/enter")
   suspend fun login(
     @Query("__code") code: Int = 200,
     @Body params: LoginParams,

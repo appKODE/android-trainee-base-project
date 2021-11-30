@@ -4,5 +4,6 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 internal data class LoginParams(
+  val guestToken: String,
   val password: String,
 )

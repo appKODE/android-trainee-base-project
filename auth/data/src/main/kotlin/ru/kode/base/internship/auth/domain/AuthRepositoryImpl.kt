@@ -28,7 +28,8 @@ internal class AuthRepositoryImpl @Inject constructor(
   }
 
   override suspend fun login(password: String) {
-    val tokens = api.login(params = LoginParams(password))
+    val guestToken = authPersistence.guestToken ?: error("guest token shouldn't be null")
+    val tokens = api.login(params = LoginParams(guestToken.value, password))
     authPersistence.saveAuthTokens(
       tokens = AuthTokens(
         accessToken = AccessToken(tokens.accessToken),
