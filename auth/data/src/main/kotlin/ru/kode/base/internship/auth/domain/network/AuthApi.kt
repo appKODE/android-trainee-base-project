@@ -24,7 +24,7 @@ internal interface AuthApi {
 
   @POST("payment/nontradeOrder")
   suspend fun login(
-    @Query("__code") code: Int = 404,
+    @Query("__code") code: Int = 200,
     @Body params: LoginParams,
   ): LoginResponse
 }
