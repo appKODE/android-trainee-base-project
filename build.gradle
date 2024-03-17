@@ -5,9 +5,9 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2" }
     }
     dependencies {
-        classpath Deps.androidGradlePlugin
-        classpath Deps.kotlinPlugin
-        classpath Deps.sqlDelightPlugin
+        classpath "${libs.android.gradle.plugin.get().module}:${libs.android.gradle.plugin.get().versionConstraint}"
+        classpath "${libs.kotlin.plugin.get().module}:${libs.kotlin.plugin.get().versionConstraint}"
+        classpath "${libs.sqldelight.plugin.get().module}:${libs.sqldelight.plugin.get().versionConstraint}"
     }
 }
 

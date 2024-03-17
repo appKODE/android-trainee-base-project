@@ -21,7 +21,7 @@ android {
   }
 
   composeOptions {
-    kotlinCompilerExtensionVersion Deps.composeVersion
+    kotlinCompilerExtensionVersion libs.versions.compose.get()
   }
 
   packagingOptions {
@@ -44,6 +44,6 @@ dependencies {
 
   implementation project(":auth:domain")
 
-  kapt Deps.toothpickProcessor
-  kapt Deps.moshiProcessor
+  kapt libs.toothpick.processor
+  kapt libs.moshi.processor
 }

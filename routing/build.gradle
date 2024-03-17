@@ -35,5 +35,5 @@ dependencies {
   implementation project(":auth:data")
   implementation project(":auth:domain")
 
-  kapt Deps.toothpickProcessor
+  kapt libs.toothpick.processor
 }

@@ -22,7 +22,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion Deps.composeVersion
+        kotlinCompilerExtensionVersion libs.versions.compose.get()
     }
 
     packagingOptions {
@@ -62,10 +62,10 @@ dependencies {
     implementation project(":routing")
     implementation project(":auth:ui")
 
-    implementation Deps.coil
-    implementation Deps.firebaseCore
-    implementation Deps.firebaseMessaging
+    implementation libs.coil1
+    implementation libs.firebase.core
+    implementation libs.firebase.messaging
 
-    kapt Deps.toothpickProcessor
-    kapt Deps.moshiProcessor
+    kapt libs.toothpick.processor
+    kapt libs.moshi.processor
 }

@@ -25,7 +25,7 @@ android {
   }
 
   composeOptions {
-    kotlinCompilerExtensionVersion Deps.composeVersion
+    kotlinCompilerExtensionVersion libs.versions.compose.get()
   }
 
   buildTypes {
@@ -41,16 +41,16 @@ android {
 dependencies {
   api project(':core')
 
-  api Deps.okHttp
-  api Deps.moshi
-  api Deps.okio
-  api Deps.retrofitLibs
-  api Deps.sqlDelightRxCoroutines
-  api Deps.supportPreferences
+  api libs.okhttp1
+  api libs.moshi1
+  api libs.okio
+  api libs.bundles.retrofit
+  api libs.sqldelight.coroutines
+  api libs.support.preferences
 
-  implementation Deps.sqlDelightAndroidDriver
-  implementation Deps.okHttpLoggingInterceptor
+  implementation libs.sqldelight.android.driver
+  implementation libs.okhttp.interceptor.logging
 
-  kapt Deps.moshiProcessor
-  kapt Deps.toothpickProcessor
+  kapt libs.moshi.processor
+  kapt libs.toothpick.processor
 }

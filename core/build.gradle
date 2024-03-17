@@ -21,7 +21,7 @@ android {
   }
 
   composeOptions {
-    kotlinCompilerExtensionVersion Deps.composeVersion
+    kotlinCompilerExtensionVersion libs.versions.compose.get()
   }
 
   packagingOptions {
@@ -39,31 +39,31 @@ android {
 }
 
 dependencies {
-  api Deps.conductor
-  api Deps.unicornCoroutines
+  api libs.conductor
+  api libs.unicorn.coroutines
 
-  kapt Deps.toothpickProcessor
-  api Deps.coreLibs
-  api Deps.toothpickRuntime
-  api Deps.timber
+  kapt libs.toothpick.processor
+  api libs.bundles.core
+  api libs.toothpick.runtime
+  api libs.timber
 
-  api Deps.supportCoreLibs
-  api Deps.supportUiLibs
+  api libs.bundles.support.core
+  api libs.bundles.support.ui
 
-  api Deps.coilCompose
-  api Deps.composeUi
-  api Deps.composeMaterial
-  api Deps.composeMaterialIcons
-  api Deps.composeTooling
-  api Deps.composeRuntime
-  api Deps.accompanistInsets
-  api Deps.accompanistSystemUiController
-  api Deps.accompanistPager
-  api Deps.accompanistPagerIndicators
-  api Deps.accompanistSwipeRefresh
-  api Deps.accompanistFlowLayout
+  api libs.coil.compose
+  api libs.compose.ui
+  api libs.compose.material1
+  api libs.compose.material.icons
+  api libs.compose.tooling
+  api libs.compose.runtime
+  api libs.accompanist.insets
+  api libs.accompanist.system.ui.controller
+  api libs.accompanist.pager1
+  api libs.accompanist.pager.indicators
+  api libs.accompanist.swipe.refresh
+  api libs.accompanist.flow.layout
 
-  api Deps.toothpickRuntime
+  api libs.toothpick.runtime
 
-  implementation Deps.supportAnnotations
+  implementation libs.support.annotations
 }
