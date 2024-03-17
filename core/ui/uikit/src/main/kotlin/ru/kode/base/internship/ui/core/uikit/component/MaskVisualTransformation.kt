@@ -106,7 +106,7 @@ private class MaskOffsetMapping(
   }
 
   override fun transformedToOriginal(offset: Int): Int {
-    if (offset == 0) return mask.indexOfFirst { it == replacement }
+    if (offset == 0) return 0
 
     var skippedCount = 0
     var count = 0
