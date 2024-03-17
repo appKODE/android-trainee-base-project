@@ -1,0 +1,53 @@
+// plugins block in groovy script doesn't support using "alias(..)"
+// see https://github.com/gradle/gradle/issues/15383#issuecomment-1396061277
+// but outside of plugins block everything works ok
+plugins {
+  id "com.android.library"
+  id "org.jetbrains.kotlin.android"
+  id "org.jetbrains.kotlin.kapt"
+  id "org.jetbrains.kotlin.plugin.parcelize"
+}
+
+android {
+  compileSdk = 34
+
+  defaultConfig {
+    minSdk 26
+
+    buildConfigField 'boolean', 'DEV', 'Boolean.parseBoolean("false")'
+    buildConfigField 'boolean', 'RELEASE', 'Boolean.parseBoolean("false")'
+  }
+
+  buildFeatures {
+    aidl = false
+    renderScript = false
+  }
+
+  buildTypes {
+    debug {
+      buildConfigField 'boolean', 'DEV', 'Boolean.parseBoolean("true")'
+    }
+    release {
+      buildConfigField 'boolean', 'RELEASE', 'Boolean.parseBoolean("true")'
+    }
+  }
+
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+
+  kotlinOptions {
+    jvmTarget = "17"
+    freeCompilerArgs += "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+    freeCompilerArgs += "-opt-in=kotlinx.coroutines.FlowPreview"
+    freeCompilerArgs += "-opt-in=kotlin.contracts.ExperimentalContracts"
+  }
+
+  kotlin {
+    jvmToolchain {
+      languageVersion = JavaLanguageVersion.of(17)
+    }
+  }
+}

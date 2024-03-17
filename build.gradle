@@ -4,11 +4,13 @@ buildscript {
         mavenCentral()
         maven { url "https://plugins.gradle.org/m2" }
     }
-    dependencies {
-        classpath "${libs.android.gradle.plugin.get().module}:${libs.android.gradle.plugin.get().versionConstraint}"
-        classpath "${libs.kotlin.plugin.get().module}:${libs.kotlin.plugin.get().versionConstraint}"
-        classpath "${libs.sqldelight.plugin.get().module}:${libs.sqldelight.plugin.get().versionConstraint}"
-    }
+}
+
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.kapt) apply false
+    alias(libs.plugins.kotlin.parcelize) apply false
 }
 
 allprojects {

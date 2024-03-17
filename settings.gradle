@@ -1,3 +1,12 @@
+pluginManagement {
+  repositories {
+    google()
+    mavenCentral()
+    gradlePluginPortal()
+  }
+}
+
+includeBuild 'build-conventions'
 include ':app',
   ':core',
   ':core:ui:uikit',

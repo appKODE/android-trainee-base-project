@@ -1,15 +1,19 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-parcelize'
-apply plugin: 'kotlin-kapt'
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.parcelize)
+
+    id "android-compose-convention"
+}
 
 android {
-    compileSdk 31
+    compileSdk 34
 
     defaultConfig {
         applicationId "ru.kode.base.internship"
         minSdk 26
-        targetSdk 31
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -22,7 +26,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.compose.get()
+        kotlinCompilerExtensionVersion libs.versions.compose.compiler.get()
     }
 
     packagingOptions {
@@ -48,12 +52,20 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
+
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
+
+    kotlin {
+        jvmToolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+    namespace 'ru.kode.base.internship'
 }
 
 dependencies {

@@ -2,10 +2,11 @@
 package ru.kode.base.internship.core.data.storage
 
 import android.content.Context
-import com.squareup.sqldelight.android.AndroidSqliteDriver
-import com.squareup.sqldelight.db.SqlDriver
-import com.squareup.sqldelight.logs.LogSqliteDriver
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.driver.android.AndroidSqliteDriver
+import app.cash.sqldelight.logs.LogSqliteDriver
 import ru.kode.base.core.annotations.ApplicationContext
+import ru.kode.base.internship.core.data.InMemoryDB
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Provider
@@ -17,7 +18,7 @@ internal class InMemoryDatabaseDriverProvider @Inject constructor(
 
   override fun get(): SqlDriver {
     return AndroidSqliteDriver(
-      composeSqlDriverSchemes(),
+      InMemoryDB.Schema,
       context,
       // use in-memory database
       name = null
@@ -30,28 +31,5 @@ internal class InMemoryDatabaseDriverProvider @Inject constructor(
     }
   }
 }
-
-
-// Would be nicer to have a better "merging" of feature-module databases.
-// See https://github.com/cashapp/sqldelight/issues/1455 (workaround stolen from it)
-private fun composeSqlDriverSchemes(vararg schemes: SqlDriver.Schema): SqlDriver.Schema =
-  object : SqlDriver.Schema {
-    override val version: Int = schemes.reduce { first, second ->
-      if (first.version != second.version) {
-        error("All schemes versions must be the same. first = $first, second: $second")
-      }
-      second
-    }.version
-
-    override fun create(driver: SqlDriver) =
-      schemes.forEach {
-        it.create(driver)
-      }
-
-    override fun migrate(driver: SqlDriver, oldVersion: Int, newVersion: Int) =
-      schemes.forEach {
-        it.migrate(driver, oldVersion, newVersion)
-      }
-  }
 
 private const val ENABLE_LOGGING = false

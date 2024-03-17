@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import coil.ImageLoader
 import coil.compose.LocalImageLoader
-import com.google.accompanist.insets.ProvideWindowInsets
 import ru.kode.base.core.BaseComposeController
 import ru.kode.base.core.BaseViewIntents
 import ru.kode.base.core.util.foregroundScope
@@ -23,10 +22,8 @@ abstract class KodeBankBaseController<VS : Any, VI : BaseViewIntents> : BaseComp
   @Composable
   final override fun Content(state: VS) {
     AppTheme {
-      ProvideWindowInsets(consumeWindowInsets = false) {
-        CompositionLocalProvider(LocalImageLoader provides imageLoader) {
-          ScreenContent(state)
-        }
+      CompositionLocalProvider(LocalImageLoader provides imageLoader) {
+        ScreenContent(state)
       }
     }
   }

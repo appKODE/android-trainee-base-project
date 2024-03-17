@@ -1,39 +1,18 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.squareup.sqldelight'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+plugins {
+  id "android-library-convention"
+  id "android-compose-convention"
+  alias(libs.plugins.sqldelight)
+}
 
 android {
-  compileSdk 31
+  namespace 'ru.kode.base.internship.core.data'
+}
 
-  defaultConfig {
-    minSdk 26
-    targetSdk 31
-    versionCode 1
-    versionName "1.0"
-
-    buildConfigField 'boolean', 'DEV', 'Boolean.parseBoolean("false")'
-    buildConfigField 'boolean', 'RELEASE', 'Boolean.parseBoolean("false")'
-  }
-
-  packagingOptions {
-    resources.excludes += "DebugProbesKt.bin"
-  }
-
-  buildFeatures {
-    compose = true
-  }
-
-  composeOptions {
-    kotlinCompilerExtensionVersion libs.versions.compose.get()
-  }
-
-  buildTypes {
-    debug {
-      buildConfigField 'boolean', 'DEV', 'Boolean.parseBoolean("true")'
-    }
-    release {
-      buildConfigField 'boolean', 'RELEASE', 'true'
+sqldelight {
+  databases {
+    InMemoryDB {
+      packageName = "ru.kode.base.internship.core.data"
+      srcDirs('src/main/sqldelight/memory')
     }
   }
 }
@@ -43,7 +22,6 @@ dependencies {
 
   api libs.okhttp1
   api libs.moshi1
-  api libs.okio
   api libs.bundles.retrofit
   api libs.sqldelight.coroutines
   api libs.support.preferences

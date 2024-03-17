@@ -1,6 +1,6 @@
 package ru.kode.base.internship.core.data.storage.di
 
-import com.squareup.sqldelight.db.SqlDriver
+import app.cash.sqldelight.db.SqlDriver
 import ru.kode.base.core.util.ToothpickModuleBindings
 import ru.kode.base.internship.core.data.storage.InMemoryDatabaseDriverProvider
 import ru.kode.base.internship.core.data.storage.preferences.di.AppPreferencesBindings

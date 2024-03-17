@@ -1,41 +1,10 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-parcelize'
-apply plugin: 'kotlin-kapt'
+plugins {
+  id "android-library-convention"
+  id "android-compose-convention"
+}
 
 android {
-  compileSdk 31
-
-  defaultConfig {
-    minSdk 26
-    targetSdk 31
-    versionCode 1
-    versionName "1.0"
-
-    buildConfigField 'boolean', 'DEV', 'Boolean.parseBoolean("false")'
-    buildConfigField 'boolean', 'RELEASE', 'Boolean.parseBoolean("false")'
-  }
-
-  buildFeatures {
-    compose = true
-  }
-
-  composeOptions {
-    kotlinCompilerExtensionVersion libs.versions.compose.get()
-  }
-
-  packagingOptions {
-    resources.excludes += "DebugProbesKt.bin"
-  }
-
-  buildTypes {
-    debug {
-      buildConfigField 'boolean', 'DEV', 'Boolean.parseBoolean("true")'
-    }
-    release {
-      buildConfigField 'boolean', 'RELEASE', 'true'
-    }
-  }
+  namespace 'ru.kode.base.internship.core'
 }
 
 dependencies {
@@ -56,7 +25,7 @@ dependencies {
   api libs.compose.material.icons
   api libs.compose.tooling
   api libs.compose.runtime
-  api libs.accompanist.insets
+  api libs.compose.compiler
   api libs.accompanist.system.ui.controller
   api libs.accompanist.pager1
   api libs.accompanist.pager.indicators

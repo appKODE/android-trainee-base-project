@@ -1,10 +1,9 @@
 package ru.kode.base.internship.core.domain
 
-import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.onEach
-import ru.kode.base.internship.core.domain.state.ConflatedStateStore
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -12,17 +11,17 @@ abstract class BaseUseCase<S : Any>(
   viewModelScope: CoroutineScope,
   initialState: S,
 ) {
-  private val stateStore = ConflatedStateStore(initialState, viewModelScope)
+  private val mutableStateFlow = MutableStateFlow(initialState)
 
   protected val stateFlow: Flow<S>
-    get() = stateStore.flow
+    get() = mutableStateFlow
 
   protected suspend fun setState(reducer: S.() -> S) {
-    return suspendCoroutine { cont -> stateStore.set { reducer().also { cont.resume(Unit) } } }
+    return suspendCoroutine { cont -> mutableStateFlow.update { reducer(it).also { cont.resume(Unit) } } }
   }
 
   protected suspend fun <T> withState(action: suspend (state: S) -> T): T {
-    val state = suspendCoroutine<S> { cont -> stateStore.get { cont.resume(it) } }
+    val state = suspendCoroutine<S> { cont -> cont.resume(mutableStateFlow.value) }
     return action(state)
   }
 }

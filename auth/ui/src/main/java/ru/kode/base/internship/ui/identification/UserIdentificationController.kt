@@ -6,8 +6,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.CircularProgressIndicator
@@ -25,8 +28,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.insets.navigationBarsWithImePadding
-import com.google.accompanist.insets.statusBarsPadding
 import ru.kode.base.internship.auth.ui.R
 import ru.kode.base.internship.core.domain.entity.LceState
 import ru.kode.base.internship.ui.component.TextField
@@ -53,7 +54,8 @@ internal class UserIdentificationController : KodeBankBaseController<ViewState, 
     Box(
       modifier = Modifier
         .statusBarsPadding()
-        .navigationBarsWithImePadding(),
+        .navigationBarsPadding()
+        .imePadding(),
     ) {
       val keyboardController = LocalSoftwareKeyboardController.current
       Column(
