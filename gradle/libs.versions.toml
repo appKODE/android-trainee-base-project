@@ -1,6 +1,6 @@
 [versions]
 agp = "8.3.0"
-kotlin1 = "1.9.20" # This version of Kotlin must be compatible with the Gradle version.
+kotlin = "1.9.20" # This version of Kotlin must be compatible with the Gradle version.
 ksp = "1.9.20-1.0.14" # This version of KSP is strictly related to the Kotlin version.
 coroutines = "1.7.3"
 compose = "1.6.3"
@@ -27,23 +27,23 @@ conductor = "3.0.0"
 unicorn-coroutines = "0.9.1"
 
 [libraries]
-kotlin-std-lib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin1" }
-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin1" }
-kotlin-compiler = { module = "org.jetbrains.kotlin:kotlin-compiler-embeddable", version.ref = "kotlin1" }
+kotlin-std-lib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlin-compiler = { module = "org.jetbrains.kotlin:kotlin-compiler-embeddable", version.ref = "kotlin" }
 
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlin-coroutines-rx2 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-rx2", version.ref = "coroutines" }
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
-compose-material1 = { module = "androidx.compose.material:material", version.ref = "compose" }
+compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
 compose-material-icons = { module = "androidx.compose.material:material-icons-core", version.ref = "compose" }
 compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose" }
 compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "compose-compiler" }
 
 accompanist-system-ui-controller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
-accompanist-pager1 = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanist" }
+accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanist" }
 accompanist-pager-indicators = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "accompanist" }
 accompanist-swipe-refresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanist" }
 accompanist-flow-layout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanist" }
@@ -55,7 +55,7 @@ kotlin-result = { module = "com.michael-bull.kotlin-result:kotlin-result", versi
 rx-relay = { module = "com.jakewharton.rxrelay2:rxrelay", version.ref = "rx-relay" }
 
 support-annotations = { module = "androidx.annotation:annotation", version.ref = "support-annotations" }
-androix-core1 = { module = "androidx.core:core", version.ref = "support-core" }
+androix-core = { module = "androidx.core:core", version.ref = "support-core" }
 androix-core-ktx = { module = "androidx.core:core-ktx", version.ref = "support-core" }
 
 support-activity = { module = "androidx.activity:activity-ktx", version.ref = "support-activity" }
@@ -65,18 +65,18 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 support-preferences = { module = "androidx.preference:preference-ktx", version.ref = "support-preference" }
 conductor = { module = "com.bluelinelabs:conductor", version.ref = "conductor" }
 
-okhttp1 = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 okhttp-interceptor-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
-moshi1 = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
+moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 moshi-processor = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 
-retrofit1 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit"}
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit"}
 retrofit-moshiconverter = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit"}
 
 toothpick-runtime = { module = "com.github.stephanenicolas.toothpick:toothpick-runtime", version.ref = "toothpick" }
 toothpick-processor = { module = "com.github.stephanenicolas.toothpick:toothpick-compiler", version.ref = "toothpick" }
 
-coil1 = { module = "io.coil-kt:coil-base", version.ref = "coil" }
+coil = { module = "io.coil-kt:coil-base", version.ref = "coil" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 
 unicorn-coroutines = { module = "ru.dimsuz:unicorn-coroutines", version.ref = "unicorn-coroutines" }
@@ -89,7 +89,7 @@ firebase-messaging = { module = "com.google.firebase:firebase-messaging", versio
 
 # Plugins
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
-kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin1" }
+kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 
 [bundles]
 core = [
@@ -104,7 +104,7 @@ core = [
 
 support-core = [
     "support-annotations",
-    "androix-core1",
+    "androix-core",
     "androix-core-ktx"
 ]
 
@@ -115,16 +115,16 @@ support-ui = [
 ]
 
 retrofit = [
-    "retrofit1",
+    "retrofit",
     "retrofit-moshiconverter"
 ]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin1" }
-kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin1" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin1" }
-kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin1" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }

@@ -74,7 +74,7 @@ dependencies {
     implementation project(":routing")
     implementation project(":auth:ui")
 
-    implementation libs.coil1
+    implementation libs.coil
     implementation libs.firebase.core
     implementation libs.firebase.messaging
 

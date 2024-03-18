@@ -21,13 +21,13 @@ dependencies {
 
   api libs.coil.compose
   api libs.compose.ui
-  api libs.compose.material1
+  api libs.compose.material
   api libs.compose.material.icons
   api libs.compose.tooling
   api libs.compose.runtime
   api libs.compose.compiler
   api libs.accompanist.system.ui.controller
-  api libs.accompanist.pager1
+  api libs.accompanist.pager
   api libs.accompanist.pager.indicators
   api libs.accompanist.swipe.refresh
   api libs.accompanist.flow.layout

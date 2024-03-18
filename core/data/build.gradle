@@ -20,8 +20,8 @@ sqldelight {
 dependencies {
   api project(':core')
 
-  api libs.okhttp1
-  api libs.moshi1
+  api libs.okhttp
+  api libs.moshi
   api libs.bundles.retrofit
   api libs.sqldelight.coroutines
   api libs.support.preferences
