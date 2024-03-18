@@ -23,7 +23,6 @@ import javax.inject.Inject
 class ConductorAppRouter @Inject constructor(
   @RouterScreenFactory private val screenKeyFactory: (Route) -> ScreenKey,
 ) : Router {
-
   private lateinit var conductorRouter: com.bluelinelabs.conductor.Router
   private val routeObservers: MutableList<RouteObserver<Route>> = mutableListOf()
 
@@ -99,7 +98,6 @@ class ConductorAppRouter @Inject constructor(
     context: RouteContext,
     beforePushClearUntil: Route,
   ) {
-
     val transaction = createTransaction(route, context)
     val newBackstack = conductorRouter.backstack
       .dropLastWhile { beforePushClearUntil != controllerRoutes.getValue(it.controller.instanceId) }
@@ -126,7 +124,8 @@ class ConductorAppRouter @Inject constructor(
       val popTransition = conductorRouter.backstack.last().popChangeHandler()?.toTransitionType()
         ?: RouterTransitionType.Horizontal
       conductorRouter.setBackstack(
-        newBackstack, popTransition.toChangeHandler(isPush = false, overlayType = RouterOverlayType.None)
+        newBackstack,
+        popTransition.toChangeHandler(isPush = false, overlayType = RouterOverlayType.None)
       )
       // see NOTE_ROUTE_MAPPING_CLEAN_UP
     } else {

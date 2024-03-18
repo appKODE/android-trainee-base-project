@@ -1,4 +1,3 @@
-@file:Suppress("MatchingDeclarationName") // intentionally contains several provider classes
 package ru.kode.base.internship.core.data.storage
 
 import android.content.Context
@@ -15,7 +14,6 @@ internal class InMemoryDatabaseDriverProvider @Inject constructor(
   @ApplicationContext
   private val context: Context,
 ) : Provider<SqlDriver> {
-
   override fun get(): SqlDriver {
     return AndroidSqliteDriver(
       InMemoryDB.Schema,
@@ -27,7 +25,9 @@ internal class InMemoryDatabaseDriverProvider @Inject constructor(
         LogSqliteDriver(driver) { log ->
           Timber.e(log)
         }
-      } else driver
+      } else {
+        driver
+      }
     }
   }
 }

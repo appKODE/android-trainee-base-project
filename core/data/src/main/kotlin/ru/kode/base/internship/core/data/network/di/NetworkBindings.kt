@@ -18,7 +18,6 @@ import javax.inject.Provider
 
 internal object NetworkBindings : ToothpickModuleBindings {
   override fun bindInto(module: Module) {
-
     module.bind(Json::class.java)
       .toInstance(createJson())
 
@@ -44,7 +43,10 @@ internal class AuthorizedOkHttpClientProvider @Inject constructor(
   private val tokensPersistence: TokensPersistence,
 ) : Provider<OkHttpClient> {
   override fun get(): OkHttpClient {
-    val loggingInterceptor = HttpLoggingInterceptor { message -> Timber.tag("OkHttp"); Timber.d(message) }
+    val loggingInterceptor = HttpLoggingInterceptor { message ->
+      Timber.tag("OkHttp")
+      Timber.d(message)
+    }
     loggingInterceptor.level = HTTP_LOG_LEVEL
     return OkHttpClient.Builder()
       .connectTimeout(HTTP_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)

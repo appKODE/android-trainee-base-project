@@ -13,12 +13,13 @@ import javax.inject.Inject
  * Default preferences will be used if nothing is passed
  */
 internal class AndroidAppPreferencesImpl : AppPreferences {
-
   private val context: Context
   private val settingsName: String?
 
   @Inject
-  constructor(@ApplicationContext context: Context) : this(context, settingsName = null)
+  constructor(
+    @ApplicationContext context: Context
+  ) : this(context, settingsName = null)
 
   constructor(context: Context, settingsName: String? = null) {
     this.context = context

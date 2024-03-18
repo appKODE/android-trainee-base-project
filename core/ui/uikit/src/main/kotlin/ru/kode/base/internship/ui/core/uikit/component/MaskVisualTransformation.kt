@@ -37,7 +37,6 @@ class MaskVisualTransformation(
   private val mask: String,
   private val replacement: Char = '*',
 ) : VisualTransformation {
-
   private val offsetMapper = MaskOffsetMapping(mask = mask, replacement = replacement)
 
   override fun filter(text: AnnotatedString): TransformedText {
@@ -89,7 +88,6 @@ private class MaskOffsetMapping(
   private val mask: String,
   private val replacement: Char = '*'
 ) : OffsetMapping {
-
   override fun originalToTransformed(offset: Int): Int {
     if (offset == 0) return 0
 

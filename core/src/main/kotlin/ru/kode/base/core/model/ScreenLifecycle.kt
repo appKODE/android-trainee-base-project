@@ -13,7 +13,6 @@ internal class ScreenLifecycle(
   private val parentScopeName: String,
   private val screenScopeName: String,
 ) : Controller.LifecycleListener() {
-
   private var presenter: PresenterLifecycle<*, *>? = null
 
   override fun postContextAvailable(controller: Controller, context: Context) {

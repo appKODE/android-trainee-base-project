@@ -4,7 +4,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
-
 import ru.kode.base.internship.core.domain.BaseUseCase
 import ru.kode.base.internship.core.domain.entity.LceState
 import javax.inject.Inject
@@ -20,8 +19,7 @@ interface AuthUseCase {
 internal class AuthUseCaseImpl @Inject constructor(
   scope: CoroutineScope,
   private val repository: AuthRepository,
-) : BaseUseCase<AuthUseCaseImpl.State>(scope, State()), AuthUseCase  {
-
+) : BaseUseCase<AuthUseCaseImpl.State>(scope, State()), AuthUseCase {
   data class State(
     val userIdentificationState: LceState = LceState.None,
     val loginState: LceState = LceState.None

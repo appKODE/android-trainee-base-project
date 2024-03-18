@@ -41,7 +41,6 @@ import ru.kode.base.internship.ui.identification.UserIdentificationScreen.ViewIn
 import ru.kode.base.internship.ui.identification.UserIdentificationScreen.ViewState
 
 internal class UserIdentificationController : KodeBankBaseController<ViewState, ViewIntents>() {
-
   override fun createConfig(): Config<ViewIntents> {
     return object : Config<ViewIntents> {
       override val intentsConstructor = ::ViewIntents
@@ -143,7 +142,7 @@ internal class UserIdentificationController : KodeBankBaseController<ViewState, 
 
 @Composable
 private fun ErrorMessage.name(): String {
-  return when(this) {
+  return when (this) {
     ErrorMessage.ValidationError.IncorrectPhoneNumber -> stringResource(id = R.string.validation_error_incorrect_phone)
     ErrorMessage.IdentificationError -> stringResource(id = R.string.error_something_went_wrong_title)
   }

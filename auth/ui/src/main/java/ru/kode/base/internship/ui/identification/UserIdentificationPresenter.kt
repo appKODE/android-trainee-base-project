@@ -1,20 +1,19 @@
 package ru.kode.base.internship.ui.identification
 
 import ru.dimsuz.unicorn.coroutines.MachineDsl
-import ru.kode.base.internship.ui.identification.UserIdentificationScreen.ViewState
-import ru.kode.base.internship.ui.identification.UserIdentificationScreen.ViewIntents
 import ru.kode.base.core.coroutine.BasePresenter
 import ru.kode.base.internship.auth.domain.AuthUseCase
 import ru.kode.base.internship.core.domain.entity.LceState
 import ru.kode.base.internship.routing.AppFlow
 import ru.kode.base.internship.ui.identification.UserIdentificationScreen.ErrorMessage
+import ru.kode.base.internship.ui.identification.UserIdentificationScreen.ViewIntents
+import ru.kode.base.internship.ui.identification.UserIdentificationScreen.ViewState
 import javax.inject.Inject
 
 internal class UserIdentificationPresenter @Inject constructor(
   private val authUseCase: AuthUseCase,
   private val coordinator: AppFlow.Coordinator,
 ) : BasePresenter<ViewState, ViewIntents, Unit>() {
-
   override fun MachineDsl<ViewState, Unit>.buildMachine() {
     initial = ViewState() to null
 
@@ -62,7 +61,7 @@ internal class UserIdentificationPresenter @Inject constructor(
       transitionTo { state, lceState ->
         state.copy(
           identificationLceState = lceState,
-          errorMessage = if(lceState is LceState.Error) ErrorMessage.IdentificationError else state.errorMessage
+          errorMessage = if (lceState is LceState.Error) ErrorMessage.IdentificationError else state.errorMessage
         )
       }
       action { _, newState, _ ->

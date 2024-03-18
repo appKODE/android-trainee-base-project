@@ -2,6 +2,7 @@ package ru.kode.base.core.routing
 
 interface Router {
   fun setRoot(route: Route, context: RouteContext)
+
   /**
    * Push the given route onto the router and then remove all the previous routes
    * until the [beforePushClearUntil] route is encountered (exclusive).

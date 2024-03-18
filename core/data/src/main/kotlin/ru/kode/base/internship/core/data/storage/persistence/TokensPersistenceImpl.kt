@@ -10,7 +10,6 @@ import javax.inject.Inject
 class TokensPersistenceImpl @Inject constructor(
   private val preferences: AppPreferences,
 ) : TokensPersistence {
-
   override val guestToken: GuestToken?
     get() {
       checkBackgroundThread()

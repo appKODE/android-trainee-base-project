@@ -12,6 +12,7 @@ internal fun MainScopeImmediate(): CoroutineScope = ContextScope(SupervisorJob()
 // copied from kotlinx.coroutines.CoroutineScope
 internal class ContextScope(context: CoroutineContext) : CoroutineScope {
   override val coroutineContext: CoroutineContext = context
+
   // CoroutineScope is used intentionally for user-friendly representation
   override fun toString(): String = "CoroutineScope(coroutineContext=$coroutineContext)"
 }

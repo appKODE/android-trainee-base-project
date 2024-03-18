@@ -3,7 +3,6 @@ package ru.kode.base.core.routing.coordinator
 import com.bluelinelabs.conductor.BuildConfig
 import ru.kode.base.core.routing.Route
 import ru.kode.base.core.routing.coordinator.entity.LifecycleCommand
-import ru.kode.base.internship.core.BuildConfig.DEV
 import toothpick.Toothpick
 import toothpick.config.Module
 

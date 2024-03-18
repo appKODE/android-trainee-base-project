@@ -18,7 +18,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,7 +45,6 @@ fun PrimaryButton(
   )
 }
 
-
 @Suppress("LongMethod") // complex composable
 @Composable
 internal fun Button(
@@ -68,7 +66,6 @@ internal fun Button(
     ButtonText(text)
   }
 }
-
 
 @Composable
 internal fun Button(
@@ -101,7 +98,7 @@ private fun ButtonText(
 ) {
   Text(
     textAlign = TextAlign.Center,
-    style =AppTheme.typography.button,
+    style = AppTheme.typography.button,
     text = text,
   )
 }
@@ -125,7 +122,6 @@ data class KodeBankButtonColors(
   private val disabledBackgroundColor: Color,
   private val disabledContentColor: Color,
 ) : ButtonColors {
-
   @Composable
   override fun backgroundColor(enabled: Boolean): State<Color> {
     return rememberUpdatedState(if (enabled) backgroundColor else disabledBackgroundColor)

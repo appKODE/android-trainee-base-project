@@ -23,7 +23,9 @@ internal fun Request.addAccessToken(authPersistence: TokensPersistence): Request
       if (accessToken != null) {
         removeHeader(ACCESS_TOKEN_HEADER)
         addHeader(ACCESS_TOKEN_HEADER, accessToken.value)
-      } else Timber.d("access token is empty, nothing to attach")
+      } else {
+        Timber.d("access token is empty, nothing to attach")
+      }
     }
     .build()
 }

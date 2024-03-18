@@ -26,7 +26,9 @@ inline val Context.appScope: Scope get() = Toothpick.openScopes(APP_SCOPE_NAME)
  * This scope has a parent scope and
  * contains additional dependencies, such as router
  */
-fun foregroundScopeName(@ForegroundActivityContext context: Context): String {
+fun foregroundScopeName(
+  @ForegroundActivityContext context: Context
+): String {
   // Uses hashCode to make scope conflicts not possible on activity restarts.
   // Otherwise if scope name would be constant the following can happen:
   //

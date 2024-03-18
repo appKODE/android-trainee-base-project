@@ -16,7 +16,6 @@ import toothpick.Scope
 import toothpick.Toothpick
 
 abstract class BaseComposeController<VS : Any, VI : BaseViewIntents> : Controller, MviView<VS, VI> {
-
   /**
    * A base interface for configuring BaseMviController.
    * Abstract subclasses may wish to extend this config interface by adding some fields to it

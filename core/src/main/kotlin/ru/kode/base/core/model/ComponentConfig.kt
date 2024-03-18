@@ -1,9 +1,9 @@
 package ru.kode.base.core.model
 
 import com.bluelinelabs.conductor.Controller
+import ru.kode.base.core.PresenterLifecycle
 import ru.kode.base.core.util.ToothpickEmptyModuleBindings
 import ru.kode.base.core.util.ToothpickModuleBindings
-import ru.kode.base.core.PresenterLifecycle
 
 data class ComponentConfig(
   /**

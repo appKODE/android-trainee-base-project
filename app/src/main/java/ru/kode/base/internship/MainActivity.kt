@@ -8,17 +8,16 @@ import androidx.core.view.WindowCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
+import ru.kode.base.core.di.APP_SCOPE_NAME
+import ru.kode.base.core.di.foregroundScopeName
 import ru.kode.base.core.routing.ConductorAppRouter
 import ru.kode.base.core.routing.Router
 import ru.kode.base.core.util.instance
-import ru.kode.base.domain.core.di.APP_SCOPE_NAME
-import ru.kode.base.domain.core.di.foregroundScopeName
 import ru.kode.base.internship.routing.AppFlow
 import toothpick.Scope
 import toothpick.Toothpick
 
 class MainActivity : AppCompatActivity() {
-
   private lateinit var foregroundScope: Scope
   private lateinit var router: ConductorAppRouter
   private var mainScope: CoroutineScope? = null

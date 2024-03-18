@@ -18,7 +18,7 @@ private val Roboto = FontFamily(
 
 @Immutable
 data class AppTypography internal constructor(
-  val title : TextStyle = TextStyle(
+  val title: TextStyle = TextStyle(
     fontFamily = Roboto,
     fontWeight = FontWeight.Bold,
     fontSize = 34.sp,
@@ -72,7 +72,7 @@ data class AppTypography internal constructor(
     fontSize = 13.sp,
     lineHeight = 16.sp
   ),
-  val caption2:  TextStyle = TextStyle(
+  val caption2: TextStyle = TextStyle(
     fontFamily = Roboto,
     fontWeight = FontWeight.Normal,
     fontSize = 11.sp,

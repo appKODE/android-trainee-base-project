@@ -14,7 +14,6 @@ internal class EnterPasswordPresenter @Inject constructor(
   private val authUseCase: AuthUseCase,
   private val coordinator: AppFlow.Coordinator,
 ) : BasePresenter<ViewState, ViewIntents, Unit>() {
-
   override fun MachineDsl<ViewState, Unit>.buildMachine() {
     initial = ViewState() to null
 
@@ -56,7 +55,7 @@ internal class EnterPasswordPresenter @Inject constructor(
       transitionTo { state, lceState ->
         state.copy(
           loginLceState = lceState,
-          errorMessage = if(lceState is LceState.Error) ErrorMessage.LoginError else state.errorMessage
+          errorMessage = if (lceState is LceState.Error) ErrorMessage.LoginError else state.errorMessage
         )
       }
 

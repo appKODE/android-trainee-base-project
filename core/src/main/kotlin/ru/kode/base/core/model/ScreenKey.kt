@@ -56,7 +56,10 @@ abstract class ScreenKey : Parcelable {
    *
    * Use [parentScopeName] to pass another scope to use as a parent scope
    */
-  fun createController(@ForegroundActivityContext context: Context, parentScopeName: Any? = null): Controller {
+  fun createController(
+    @ForegroundActivityContext context: Context,
+    parentScopeName: Any? = null
+  ): Controller {
     if (parentScopeName != null) {
       require(parentScopeName is String) { "scope names are required to be strings, got: ${parentScopeName.javaClass}" }
     }

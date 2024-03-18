@@ -11,7 +11,6 @@ internal class AppFlowCoordinator @Inject constructor(
   scope: Scope,
   private val router: Router,
 ) : BaseFlowCoordinator<AppFlow.Event, Unit>(scope), AppFlow.Coordinator {
-
   override fun openInitialRoute(beforePushClearUntil: Route?) {
     return router.push(
       AppRoute.Login.UserIdentificationKey,
@@ -20,7 +19,7 @@ internal class AppFlowCoordinator @Inject constructor(
   }
 
   override fun handleEvent(event: AppFlow.Event) {
-    when(event) {
+    when (event) {
       AppFlow.Event.LoginRequested -> router.push(AppRoute.Login.EnterPassword, createContext())
       AppFlow.Event.EnterPasswordDismissed -> router.pop()
       AppFlow.Event.UserLoggedIn -> Unit

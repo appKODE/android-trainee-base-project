@@ -16,7 +16,6 @@ import toothpick.Toothpick
 abstract class BaseFlowCoordinator<Event, Result>(
   scope: Scope,
 ) : BaseFlowCoordinator1<Event, Unit, Result>(scope), FlowCoordinator<Event, Result> {
-
   final override fun start(beforePushClearUntil: Route?, onFlowFinish: ((Result) -> Unit)?) {
     return start(Unit, beforePushClearUntil, onFlowFinish)
   }

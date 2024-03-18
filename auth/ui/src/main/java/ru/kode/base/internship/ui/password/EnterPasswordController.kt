@@ -43,7 +43,6 @@ import ru.kode.base.internship.ui.password.EnterPasswordScreen.ViewIntents
 import ru.kode.base.internship.ui.password.EnterPasswordScreen.ViewState
 
 internal class EnterPasswordController : KodeBankBaseController<ViewState, ViewIntents>() {
-
   override fun createConfig(): Config<ViewIntents> {
     return object : Config<ViewIntents> {
       override val intentsConstructor = ::ViewIntents

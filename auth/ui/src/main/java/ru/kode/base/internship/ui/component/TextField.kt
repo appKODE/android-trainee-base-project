@@ -55,7 +55,7 @@ internal fun TextField(
     placeholder = placeholder?.let {
       {
         Text(
-          text =  it,
+          text = it,
           style = AppTheme.typography.body2,
           color = AppTheme.colors.textTertiary
         )

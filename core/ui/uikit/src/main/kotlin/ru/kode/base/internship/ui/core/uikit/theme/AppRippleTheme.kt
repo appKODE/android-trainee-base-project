@@ -5,8 +5,7 @@ import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-internal class AppRippleTheme(private val colors: AppColors): RippleTheme {
-
+internal class AppRippleTheme(private val colors: AppColors) : RippleTheme {
   @Composable
   override fun defaultColor(): Color {
     return RippleTheme.defaultRippleColor(
