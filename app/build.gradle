@@ -1,83 +1,82 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
-    alias(libs.plugins.kotlin.parcelize)
+  alias(libs.plugins.android.application)
+  alias(libs.plugins.kotlin.android)
+  alias(libs.plugins.kotlin.kapt)
+  alias(libs.plugins.kotlin.parcelize)
 
-    id "android-compose-convention"
+  id "android-compose-convention"
 }
 
 android {
-    compileSdk 34
+  compileSdk 34
 
-    defaultConfig {
-        applicationId "ru.kode.base.internship"
-        minSdk 26
-        targetSdk 34
-        versionCode 1
-        versionName "1.0"
+  defaultConfig {
+    applicationId "ru.kode.base.internship"
+    minSdk 26
+    targetSdk 34
+    versionCode 1
+    versionName "1.0"
 
-        buildConfigField 'boolean', 'DEV', 'Boolean.parseBoolean("false")'
-        buildConfigField 'boolean', 'RELEASE', 'Boolean.parseBoolean("false")'
+    buildConfigField 'boolean', 'DEV', 'Boolean.parseBoolean("false")'
+    buildConfigField 'boolean', 'RELEASE', 'Boolean.parseBoolean("false")'
+  }
+
+  buildFeatures {
+    compose = true
+  }
+
+  composeOptions {
+    kotlinCompilerExtensionVersion libs.versions.compose.compiler.get()
+  }
+
+  packagingOptions {
+    resources.excludes += "DebugProbesKt.bin"
+  }
+
+  buildTypes {
+    debug {
+      versionNameSuffix '-dev'
+      applicationIdSuffix '.dev'
+      debuggable true
+
+      buildConfigField 'boolean', 'DEV', 'Boolean.parseBoolean("true")'
     }
+    release {
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      versionNameSuffix '-release'
+      debuggable false
 
-    buildFeatures {
-        compose = true
+      minifyEnabled true
+
+      buildConfigField 'boolean', 'RELEASE', 'true'
     }
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.compose.compiler.get()
+  kotlinOptions {
+    jvmTarget = '17'
+  }
+
+  kotlin {
+    jvmToolchain {
+      languageVersion = JavaLanguageVersion.of(17)
     }
-
-    packagingOptions {
-        resources.excludes += "DebugProbesKt.bin"
-    }
-
-    buildTypes {
-        debug {
-            versionNameSuffix '-dev'
-            applicationIdSuffix '.dev'
-            debuggable true
-
-            buildConfigField 'boolean', 'DEV', 'Boolean.parseBoolean("true")'
-        }
-        release {
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            versionNameSuffix '-release'
-            debuggable false
-
-            minifyEnabled true
-
-            buildConfigField 'boolean', 'RELEASE', 'true'
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = '17'
-    }
-
-    kotlin {
-        jvmToolchain {
-            languageVersion = JavaLanguageVersion.of(17)
-        }
-    }
-    namespace 'ru.kode.base.internship'
+  }
+  namespace 'ru.kode.base.internship'
 }
 
 dependencies {
-    implementation project(":core")
-    implementation project(":core:data")
-    implementation project(":routing")
-    implementation project(":auth:ui")
+  implementation project(":core")
+  implementation project(":core:data")
+  implementation project(":routing")
+  implementation project(":auth:ui")
 
-    implementation libs.coil
-    implementation libs.firebase.core
-    implementation libs.firebase.messaging
+  implementation libs.coil
+  implementation libs.firebase.core
+  implementation libs.firebase.messaging
 
-    kapt libs.toothpick.processor
-    kapt libs.moshi.processor
+  kapt libs.toothpick.processor
 }

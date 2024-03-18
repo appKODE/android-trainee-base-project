@@ -1,8 +1,8 @@
 package ru.kode.base.internship.auth.domain.network.entity.otp
 
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
-@JsonClass(generateAdapter = true)
+@Serializable
 internal data class ConfirmOtpResponse(
   val guestToken: String,
 )

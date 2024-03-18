@@ -1,7 +1,7 @@
 plugins {
   id "android-library-convention"
-  id "android-compose-convention"
   alias(libs.plugins.sqldelight)
+  alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
@@ -21,14 +21,14 @@ dependencies {
   api project(':core')
 
   api libs.okhttp
-  api libs.moshi
+  api libs.kotlinx.serialization.json
   api libs.bundles.retrofit
   api libs.sqldelight.coroutines
   api libs.support.preferences
 
+  implementation libs.retrofit.converter.serialization
   implementation libs.sqldelight.android.driver
   implementation libs.okhttp.interceptor.logging
 
-  kapt libs.moshi.processor
   kapt libs.toothpick.processor
 }

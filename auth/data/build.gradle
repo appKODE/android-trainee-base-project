@@ -1,6 +1,7 @@
 plugins {
   id "android-library-convention"
   id "android-compose-convention"
+  alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
@@ -14,5 +15,4 @@ dependencies {
   implementation project(":auth:domain")
 
   kapt libs.toothpick.processor
-  kapt libs.moshi.processor
 }
