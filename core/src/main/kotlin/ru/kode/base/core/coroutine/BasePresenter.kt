@@ -7,7 +7,6 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -30,7 +29,7 @@ import kotlin.coroutines.CoroutineContext
 abstract class BasePresenter<VS : Any, VI : BaseViewIntents, A : Any>(
   private val actionsContext: CoroutineContext = Dispatchers.Main.immediate,
 ) : PresenterLifecycle<VS, VI>, CoroutineScope by MainScopeImmediate() + CoroutineName("Presenter") {
-  private var viewStateFlow = MutableSharedFlow<VS>(replay = 1)
+  private val viewStateFlow = MutableSharedFlow<VS>(replay = 1)
   private var viewScope: CoroutineScope? = null
   private val intentBinders = arrayListOf<IntentBinder<VI>>()
   private var isFirstViewAttach = true

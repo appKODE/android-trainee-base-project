@@ -66,7 +66,8 @@ internal class AuthorizedRetrofitProvider @Inject constructor(
     return Retrofit.Builder()
       .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
       .client(httpClient)
-      .baseUrl("$BASE_URL/").build()
+      .baseUrl("$BASE_URL/")
+      .build()
   }
 }
 

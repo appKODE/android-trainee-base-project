@@ -1,7 +1,7 @@
 package ru.kode.base.internship
 
 import android.app.Application
-import ru.kode.base.domain.core.di.APP_SCOPE_NAME
+import ru.kode.base.core.di.APP_SCOPE_NAME
 import timber.log.Timber
 import toothpick.Toothpick
 

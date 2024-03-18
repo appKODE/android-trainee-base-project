@@ -134,7 +134,7 @@ internal class UserIdentificationController : KodeBankBaseController<ViewState, 
       modifier = modifier,
       hostState = snackbarHostState,
       snackbar = { snackBarData ->
-        ErrorSnackbar(Modifier.padding(16.dp), snackBarData.message)
+        ErrorSnackbar(modifier = Modifier.padding(16.dp), message = snackBarData.message)
       }
     )
   }

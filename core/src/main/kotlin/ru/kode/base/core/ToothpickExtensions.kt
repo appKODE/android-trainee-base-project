@@ -1,4 +1,4 @@
-package ru.kode.base.ui.core.util
+package ru.kode.base.core
 
 import ru.kode.base.core.util.ToothpickModuleBindings
 import toothpick.config.Module

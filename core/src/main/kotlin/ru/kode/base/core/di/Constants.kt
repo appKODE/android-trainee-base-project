@@ -1,4 +1,4 @@
-package ru.kode.base.domain.core.di
+package ru.kode.base.core.di
 
 import android.content.Context
 import ru.kode.base.core.annotations.ForegroundActivityContext

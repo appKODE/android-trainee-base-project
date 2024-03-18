@@ -124,9 +124,9 @@ internal class EnterPasswordController : KodeBankBaseController<ViewState, ViewI
 
   @Composable
   private fun Snackbar(
-    modifier: Modifier = Modifier,
     message: String?,
     onDismiss: () -> Unit,
+    modifier: Modifier = Modifier,
   ) {
     val snackbarHostState = remember { SnackbarHostState() }
 
@@ -141,7 +141,7 @@ internal class EnterPasswordController : KodeBankBaseController<ViewState, ViewI
       modifier = modifier,
       hostState = snackbarHostState,
       snackbar = { snackBarData ->
-        ErrorSnackbar(Modifier.padding(16.dp), snackBarData.message)
+        ErrorSnackbar(modifier = Modifier.padding(16.dp), message = snackBarData.message)
       }
     )
   }

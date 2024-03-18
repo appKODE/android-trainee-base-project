@@ -3,10 +3,9 @@ package ru.kode.base.core.util
 import android.app.Activity
 import android.content.Context
 import com.bluelinelabs.conductor.Controller
-import ru.kode.base.domain.core.di.APP_SCOPE_NAME
-import ru.kode.base.domain.core.di.appScope
-import ru.kode.base.domain.core.di.foregroundScopeName
-import ru.kode.base.ui.mvi.core.util.requireActivity
+import ru.kode.base.core.di.APP_SCOPE_NAME
+import ru.kode.base.core.di.appScope
+import ru.kode.base.core.di.foregroundScopeName
 import toothpick.Scope
 import toothpick.Toothpick
 

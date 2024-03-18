@@ -12,9 +12,9 @@ import ru.kode.base.core.annotations.RouterScreenFactory
 import ru.kode.base.core.model.ScreenKey
 import ru.kode.base.core.routing.transition.RouterOverlayType
 import ru.kode.base.core.routing.transition.RouterTransitionType
-import ru.kode.base.ui.mvi.core.util.obtainTransaction
-import ru.kode.base.ui.mvi.core.util.toChangeHandler
-import ru.kode.base.ui.mvi.core.util.toTransitionType
+import ru.kode.base.core.util.obtainTransaction
+import ru.kode.base.core.util.toChangeHandler
+import ru.kode.base.core.util.toTransitionType
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -156,13 +156,13 @@ class ConductorAppRouter @Inject constructor(
       handler: ControllerChangeHandler,
     ) {
       for (observer in routeObservers) {
-        val routeTo = if (to != null) controllerRoutes[to.instanceId] else null
+        val routeTo = to?.let { controllerRoutes[it.instanceId] }
 
         if (routeTo == null) {
           Timber.d("'to' controller is null, not reporting change to observers")
           continue
         }
-        val routeFrom = if (from != null) controllerRoutes[from.instanceId] else null
+        val routeFrom = from?.let { controllerRoutes[from.instanceId] }
         if (isPush) {
           observer.pushStarted(routeTo, routeFrom)
         } else {
@@ -179,12 +179,12 @@ class ConductorAppRouter @Inject constructor(
       handler: ControllerChangeHandler,
     ) {
       for (observer in routeObservers) {
-        val routeTo = if (to != null) controllerRoutes[to.instanceId] else null
+        val routeTo = to?.let { controllerRoutes[to.instanceId] }
         if (routeTo == null) {
           Timber.d("'to' controller is null, not reporting change to observers")
           continue
         }
-        val routeFrom = if (from != null) controllerRoutes[from.instanceId] else null
+        val routeFrom = from?.let { controllerRoutes[from.instanceId] }
         if (isPush) {
           observer.pushCompleted(routeTo, routeFrom)
         } else {

@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Parcelable
 import com.bluelinelabs.conductor.Controller
 import ru.kode.base.core.annotations.ForegroundActivityContext
-import ru.kode.base.domain.core.di.foregroundScopeName
+import ru.kode.base.core.di.foregroundScopeName
 
 /**
  * A routing key representing the screen.

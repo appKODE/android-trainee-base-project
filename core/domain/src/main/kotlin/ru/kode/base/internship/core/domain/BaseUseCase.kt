@@ -1,14 +1,13 @@
 package ru.kode.base.internship.core.domain
 
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
+@Suppress("UnnecessaryAbstractClass")
 abstract class BaseUseCase<S : Any>(
-  viewModelScope: CoroutineScope,
   initialState: S,
 ) {
   private val mutableStateFlow = MutableStateFlow(initialState)

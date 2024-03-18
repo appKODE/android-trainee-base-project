@@ -48,9 +48,9 @@ fun PrimaryButton(
 @Suppress("LongMethod") // complex composable
 @Composable
 internal fun Button(
-  modifier: Modifier = Modifier,
   onClick: () -> Unit,
   text: String,
+  modifier: Modifier = Modifier,
   enabled: Boolean = true,
   colors: ButtonColors = ButtonDefaults.primaryButtonColors(),
   elevation: ButtonElevation = androidx.compose.material.ButtonDefaults

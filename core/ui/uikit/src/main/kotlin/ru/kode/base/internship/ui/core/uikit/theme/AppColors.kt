@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 
+@Suppress("LongParameterList")
 @Stable
 class AppColors(
   backgroundPrimary: Color,

@@ -1,4 +1,4 @@
-package ru.kode.base.ui.mvi.core.util
+package ru.kode.base.core.util
 
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
