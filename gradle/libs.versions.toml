@@ -26,6 +26,7 @@ material = "1.11.0"
 support-preference = "1.1.1"
 conductor = "3.0.0"
 unicorn-coroutines = "0.9.1"
+ktlint = "1.1.1"
 
 [libraries]
 kotlin-std-lib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
@@ -87,6 +88,9 @@ sqldelight-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", 
 
 firebase-core = { module = "com.google.firebase:firebase-core", version.ref = "firebase-core" }
 firebase-messaging = { module = "com.google.firebase:firebase-messaging", version.ref = "firebase-messaging" }
+
+# Linters
+ktlint = { module = "com.pinterest.ktlint:ktlint-cli", version.ref = "ktlint" }
 
 # Plugins
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
