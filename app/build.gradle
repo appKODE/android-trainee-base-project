@@ -5,6 +5,7 @@ plugins {
   alias(libs.plugins.kotlin.parcelize)
 
   id "android-compose-convention"
+  id "detekt-convention"
 }
 
 android {

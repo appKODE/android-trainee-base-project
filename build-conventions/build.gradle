@@ -16,4 +16,5 @@ dependencies {
   // "External plugins need to be added as implementation dependencies before they
   //  can be applied in a precompiled script plugin"
   implementation libs.kotlin.plugin
+  implementation libs.detekt.plugin
 }
