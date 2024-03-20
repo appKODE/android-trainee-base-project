@@ -1,18 +1,19 @@
 package ru.kode.base.internship.auth.domain.di
 
-import ru.kode.base.internship.auth.domain.AuthRepository
-import ru.kode.base.internship.auth.domain.AuthRepositoryImpl
+import com.squareup.anvil.annotations.ContributesTo
+import dagger.Module
+import dagger.Provides
+import retrofit2.Retrofit
+import ru.kode.base.core.di.AppScope
+import ru.kode.base.core.di.SingleIn
 import ru.kode.base.internship.auth.domain.network.AuthApi
-import toothpick.config.Module
 
-class AuthDataModule : Module() {
-  init {
-    bind(AuthRepository::class.java)
-      .to(AuthRepositoryImpl::class.java)
-      .singletonInScope()
-
-    bind(AuthApi::class.java)
-      .toProvider(AuthApiProvider::class.java)
-      .providesSingletonInScope()
+@Module
+@ContributesTo(AppScope::class)
+object AuthDataModule {
+  @Provides
+  @SingleIn(AppScope::class)
+  fun provideAuthApi(retrofit: Retrofit): AuthApi {
+    return retrofit.create(AuthApi::class.java)
   }
 }

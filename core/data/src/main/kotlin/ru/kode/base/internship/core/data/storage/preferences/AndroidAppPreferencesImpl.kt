@@ -12,7 +12,7 @@ import javax.inject.Inject
  * @property settingsName a name of shared preferences file to use.
  * Default preferences will be used if nothing is passed
  */
-internal class AndroidAppPreferencesImpl : AppPreferences {
+class AndroidAppPreferencesImpl : AppPreferences {
   private val context: Context
   private val settingsName: String?
 

@@ -3,28 +3,23 @@ package ru.kode.base.internship.auth.domain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
+import ru.kode.base.core.di.AppScope
+import ru.kode.base.core.di.SingleIn
 import ru.kode.base.internship.core.domain.BaseUseCase
 import ru.kode.base.internship.core.domain.entity.LceState
 import javax.inject.Inject
 
-interface AuthUseCase {
-  suspend fun identifyUser(phoneNumber: String)
-  val userIdentificationState: Flow<LceState>
-
-  suspend fun login(password: String)
-  val loginState: Flow<LceState>
-}
-
-internal class AuthUseCaseImpl @Inject constructor(
+@SingleIn(AppScope::class)
+class AuthUseCase @Inject constructor(
   private val repository: AuthRepository,
-) : BaseUseCase<AuthUseCaseImpl.State>(State()), AuthUseCase {
+) : BaseUseCase<AuthUseCase.State>(State()) {
   data class State(
     val userIdentificationState: LceState = LceState.None,
     val loginState: LceState = LceState.None,
   )
 
   @Suppress("TooGenericExceptionCaught")
-  override suspend fun identifyUser(phoneNumber: String) {
+  suspend fun identifyUser(phoneNumber: String) {
     setState { copy(userIdentificationState = LceState.Loading) }
     try {
       repository.identifyUser(phoneNumber)
@@ -34,11 +29,11 @@ internal class AuthUseCaseImpl @Inject constructor(
     }
   }
 
-  override val userIdentificationState: Flow<LceState>
+  val userIdentificationState: Flow<LceState>
     get() = stateFlow.map { it.userIdentificationState }.distinctUntilChanged()
 
   @Suppress("TooGenericExceptionCaught")
-  override suspend fun login(password: String) {
+  suspend fun login(password: String) {
     setState { copy(loginState = LceState.Loading) }
     try {
       repository.login(password)
@@ -48,6 +43,6 @@ internal class AuthUseCaseImpl @Inject constructor(
     }
   }
 
-  override val loginState: Flow<LceState>
+  val loginState: Flow<LceState>
     get() = stateFlow.map { it.loginState }.distinctUntilChanged()
 }

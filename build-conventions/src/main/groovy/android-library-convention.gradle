@@ -13,7 +13,7 @@ android {
   compileSdk = 34
 
   defaultConfig {
-    minSdk 26
+    minSdk 28
 
     buildConfigField 'boolean', 'DEV', 'Boolean.parseBoolean("false")'
     buildConfigField 'boolean', 'RELEASE', 'Boolean.parseBoolean("false")'

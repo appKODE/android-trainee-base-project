@@ -1,23 +1,32 @@
 package ru.kode.base.internship
 
 import android.app.Application
-import ru.kode.base.core.di.APP_SCOPE_NAME
+import coil.ImageLoader
+import coil.ImageLoaderFactory
+import ru.kode.base.internship.di.AppComponent
+import ru.kode.base.internship.di.AppComponentHolder
+import ru.kode.base.internship.di.DaggerAppComponent
 import timber.log.Timber
-import toothpick.Toothpick
 
-class KodeApplication : Application() {
+class KodeApplication : Application(), ImageLoaderFactory, AppComponentHolder {
+  private lateinit var _appComponent: AppComponent
   override fun onCreate() {
     super.onCreate()
 
-    configureAppScope()
+    _appComponent = buildAppComponent()
     configureLogging()
   }
 
-  private fun configureAppScope() {
-    val appScope = Toothpick.openScope(APP_SCOPE_NAME)
-    appScope.installModules(
-      KodeApplicationModule(this),
-    )
+  override fun newImageLoader(): ImageLoader {
+    return _appComponent.imageLoader()
+  }
+
+  override val appComponent: AppComponent get() = _appComponent
+
+  private fun buildAppComponent(): AppComponent {
+    return DaggerAppComponent.builder()
+      .applicationContext(this)
+      .build()
   }
 
   private fun configureLogging() {

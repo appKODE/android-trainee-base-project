@@ -1,8 +1,8 @@
 package ru.kode.base.internship.core.domain.entity
 
 sealed class LceState {
-  object None : LceState()
-  object Loading : LceState()
+  data object None : LceState()
+  data object Loading : LceState()
   data class Error(val message: String?) : LceState()
-  object Content : LceState()
+  data object Content : LceState()
 }

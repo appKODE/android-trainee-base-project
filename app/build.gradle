@@ -6,6 +6,7 @@ plugins {
 
   id "android-compose-convention"
   id "detekt-convention"
+  id "dagger-convention"
 }
 
 android {
@@ -13,7 +14,7 @@ android {
 
   defaultConfig {
     applicationId "ru.kode.base.internship"
-    minSdk 26
+    minSdk 28
     targetSdk 34
     versionCode 1
     versionName "1.0"
@@ -71,13 +72,12 @@ android {
 
 dependencies {
   implementation project(":core")
-  implementation project(":core:data")
+  implementation project(":core:ui:uikit")
   implementation project(":routing")
-  implementation project(":auth:ui")
+  api project(":core:data")
+  api project(":auth:ui")
 
   implementation libs.coil
   implementation libs.firebase.core
   implementation libs.firebase.messaging
-
-  kapt libs.toothpick.processor
 }

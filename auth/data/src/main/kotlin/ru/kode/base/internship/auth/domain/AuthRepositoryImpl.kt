@@ -1,5 +1,7 @@
 package ru.kode.base.internship.auth.domain
 
+import com.squareup.anvil.annotations.ContributesBinding
+import ru.kode.base.core.di.AppScope
 import ru.kode.base.internship.auth.domain.network.AuthApi
 import ru.kode.base.internship.auth.domain.network.entity.login.LoginParams
 import ru.kode.base.internship.auth.domain.network.entity.otp.ConfirmOtpParams
@@ -11,7 +13,8 @@ import ru.kode.base.internship.core.data.entity.RefreshToken
 import ru.kode.base.internship.core.data.storage.persistence.TokensPersistence
 import javax.inject.Inject
 
-internal class AuthRepositoryImpl @Inject constructor(
+@ContributesBinding(AppScope::class)
+class AuthRepositoryImpl @Inject constructor(
   private val api: AuthApi,
   private val authPersistence: TokensPersistence,
 ) : AuthRepository {

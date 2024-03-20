@@ -1,5 +1,6 @@
 plugins {
   id "android-library-convention"
+  id "dagger-convention"
   id "android-compose-convention"
 }
 
@@ -8,12 +9,10 @@ android {
 }
 
 dependencies {
-  api libs.conductor
-  api libs.unicorn.coroutines
+  api libs.androidx.navigation.compose
+  api libs.statemachine
 
-  kapt libs.toothpick.processor
   api libs.bundles.core
-  api libs.toothpick.runtime
   api libs.timber
 
   api libs.bundles.support.core
@@ -31,8 +30,6 @@ dependencies {
   api libs.accompanist.pager.indicators
   api libs.accompanist.swipe.refresh
   api libs.accompanist.flow.layout
-
-  api libs.toothpick.runtime
 
   implementation libs.support.annotations
 }

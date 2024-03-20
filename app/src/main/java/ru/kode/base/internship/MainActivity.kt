@@ -1,65 +1,83 @@
 package ru.kode.base.internship
 
+import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
-import android.view.ViewGroup
-import android.widget.FrameLayout
-import androidx.appcompat.app.AppCompatActivity
+import android.view.WindowManager
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.core.view.WindowCompat
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
-import ru.kode.base.core.di.APP_SCOPE_NAME
-import ru.kode.base.core.di.foregroundScopeName
-import ru.kode.base.core.routing.ConductorAppRouter
-import ru.kode.base.core.routing.Router
-import ru.kode.base.core.util.instance
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import ru.kode.base.core.viewmodel.LocalViewModelStore
+import ru.kode.base.internship.di.AppComponent
+import ru.kode.base.internship.di.AppComponentHolder
+import ru.kode.base.internship.di.ForegroundComponent
 import ru.kode.base.internship.routing.AppFlow
-import toothpick.Scope
-import toothpick.Toothpick
+import ru.kode.base.internship.ui.core.uikit.theme.AppTheme
 
-class MainActivity : AppCompatActivity() {
-  private lateinit var foregroundScope: Scope
-  private lateinit var router: ConductorAppRouter
-  private var mainScope: CoroutineScope? = null
-
+class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    mainScope?.cancel()
-    mainScope = MainScope()
-
-    foregroundScope = Toothpick.openScopes(APP_SCOPE_NAME, foregroundScopeName(this))
-    foregroundScope.installModules(MainActivityModule(this, mainScope!!))
-
-    val rootLayout = createRootLayout()
-    setContentView(rootLayout)
+    val appComponent = (applicationContext!! as AppComponentHolder).appComponent
     configureEdgeToEdge()
+    setContent {
+      val navController = rememberNavController()
+      val foregroundComponent = rememberForegroundComponent(appComponent, navController)
+      val viewModelStore = remember(foregroundComponent) { foregroundComponent.viewModelStore() }
 
-    val appRouter = foregroundScope.instance<Router>() as ConductorAppRouter
-    appRouter.attachTo(this, rootLayout)
-    router = appRouter
-    AppFlow.Builder()
-      .withParams(Unit)
-      .withFinishAction { finish() }
-      .start(foregroundScope.name as String)
+      AppTheme {
+        WindowBackgroundEffect(color = AppTheme.colors.backgroundPrimary)
+        CompositionLocalProvider(LocalViewModelStore provides viewModelStore) {
+          NavHost(navController = navController, startDestination = "root") {
+            composable("root") { }
+            AppFlow.graph(this)
+          }
+          AppFlowStartEffect(foregroundComponent)
+        }
+      }
+    }
   }
 
-  private fun createRootLayout(): ViewGroup {
-    return FrameLayout(this)
+  @Composable
+  internal fun AppFlowStartEffect(foregroundComponent: ForegroundComponent) {
+    LaunchedEffect(foregroundComponent) {
+      foregroundComponent.appFlowComponent().coordinator().start(
+        onFlowFinish = { finish() },
+        onError = { }
+      )
+    }
   }
 
-  override fun onBackPressed() {
-    if (!router.handleBack()) {
-      super.onBackPressed()
+  @Composable
+  private fun WindowBackgroundEffect(color: Color) {
+    LaunchedEffect(color) {
+      window.setBackgroundDrawable(ColorDrawable(color.toArgb()))
+    }
+  }
+
+  @Composable
+  internal fun rememberForegroundComponent(
+    appComponent: AppComponent,
+    navController: NavHostController,
+  ): ForegroundComponent {
+    return remember {
+      appComponent.foregroundComponentFactory()
+        .create(activity = this, navController = navController)
     }
   }
 
   private fun configureEdgeToEdge() {
     WindowCompat.setDecorFitsSystemWindows(window, false)
-  }
-
-  override fun onDestroy() {
-    super.onDestroy()
-    mainScope?.cancel()
-    Toothpick.closeScope(foregroundScope.name)
+    window.attributes.layoutInDisplayCutoutMode =
+      WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
   }
 }

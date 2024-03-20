@@ -1,5 +1,6 @@
 plugins {
   id "android-library-convention"
+  id "dagger-convention"
   id "android-compose-convention"
   alias(libs.plugins.kotlinx.serialization)
 }
@@ -10,9 +11,7 @@ android {
 
 dependencies {
   implementation project(":core")
-  implementation project(":core:data")
+  api project(":core:data")
 
-  implementation project(":auth:domain")
-
-  kapt libs.toothpick.processor
+  api project(":auth:domain")
 }

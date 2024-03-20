@@ -10,7 +10,7 @@ import ru.kode.base.internship.auth.domain.network.entity.otp.ConfirmOtpResponse
 import ru.kode.base.internship.auth.domain.network.entity.otp.RequestOtpParams
 import ru.kode.base.internship.auth.domain.network.entity.otp.RequestOtpResponse
 
-internal interface AuthApi {
+interface AuthApi {
   @POST("api/auth/login")
   suspend fun requestOtp(
     @Query("__code") code: Int = 200,
