@@ -1,6 +1,5 @@
 package ru.kode.base.internship.core.data.network.di
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.squareup.anvil.annotations.ContributesTo
 import dagger.Module
 import dagger.Provides
@@ -9,6 +8,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import ru.kode.base.core.di.AppScope
 import ru.kode.base.core.di.SingleIn
 import ru.kode.base.internship.core.BuildConfig
@@ -51,7 +51,7 @@ object NetworkModule {
   @SingleIn(AppScope::class)
   fun provideRetrofit(json: Json, httpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
-      .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+      .addConverterFactory(json.asConverterFactory("application/json; charset=UTF8".toMediaType()))
       .client(httpClient)
       .baseUrl("$BASE_URL/")
       .build()
